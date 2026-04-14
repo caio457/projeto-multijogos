@@ -194,7 +194,7 @@ char nomes[7][50] = {"jogador 1","jogador 2","jogador 3", "jogador 4", "jogador 
         escolha--; // ajustar para índice 0 a 4
 
         // validação
-        if(escolha < 0 || escolha > 4) {
+        if(escolha < 0 || escolha > 5) {
             printf("Escolha invalida!\n");
             continue;
         }
@@ -290,13 +290,13 @@ void GousmasWar(){
 
                 if (alvo == 1) {
                     j2_g1 += furia;
-                    if (j2_g1 > 4) {
+                    if (j2_g1 > 5) {
                         j2_a1 = 0;
                         printf("Gousma destruida!\n");
                     }
                 } else {
                     j2_g2 += furia;
-                    if (j2_g2 > 4) {
+                    if (j2_g2 > 5) {
                         j2_a2 = 0;
                         printf("Gousma destruida!\n");
                     }
@@ -307,13 +307,13 @@ void GousmasWar(){
 
                 if (alvo == 1) {
                     j1_g1 += furia;
-                    if (j1_g1 > 4) {
+                    if (j1_g1 > 5) {
                         j1_a1 = 0;
                         printf("Gousma destruida!\n");
                     }
                 } else {
                     j1_g2 += furia;
-                    if (j1_g2 > 4) {
+                    if (j1_g2 > 5) {
                         j1_a2 = 0;
                         printf("Gousma destruida!\n");
                     }
@@ -351,7 +351,7 @@ void GousmasWar(){
                         printf("Reviveu!\n");
                     }
 
-                    if (j1_g2 > 4) {
+                    if (j1_g2 > 5) {
                         j1_a2 = 0;
                         printf("Destruida!\n");
                     }
@@ -365,7 +365,7 @@ void GousmasWar(){
                         printf("Reviveu!\n");
                     }
 
-                    if (j1_g1 > 4) {
+                    if (j1_g1 > 5) {
                         j1_a1 = 0;
                         printf("Destruida!\n");
                     }
@@ -388,7 +388,7 @@ void GousmasWar(){
                         printf("Reviveu!\n");
                     }
 
-                    if (j2_g2 > 4) {
+                    if (j2_g2 > 5) {
                         j2_a2 = 0;
                         printf("Destruida!\n");
                     }
@@ -402,7 +402,7 @@ void GousmasWar(){
                         printf("Reviveu!\n");
                     }
 
-                    if (j2_g1 > 4) {
+                    if (j2_g1 > 5) {
                         j2_a1 = 0;
                         printf("Destruida!\n");
                     }
@@ -463,7 +463,7 @@ int main() {
                  system ("cls");
             case 2:
                 cobraNaCaixa();
-                break;
+                break;                            //chat gpt
                  system ("cls");
             case 3:
                 GousmasWar();
