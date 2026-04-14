@@ -240,7 +240,7 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
 
     do {
-            printf ("  TÍTULO DO JOGO \n");  
+            printf ("  ARCADE CESUPA \n");  
 			printf ("\n"); 
 			printf ("1:Perguntas e Respostas \n");
             printf ("2:Cobra na Caixa \n");
