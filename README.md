@@ -2,6 +2,11 @@
 
 
 
+
+
+
+
+   
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -65,7 +70,7 @@ printf ("       \n");
 printf ("       \n");
 printf ("       \n");
 
-printf ("Em linguagem C, qual símbolo é usado para “e lógico” (AND ?\n");
+printf ("Em linguagem C, qual símbolo é usado para “e lógico” (AND )?\n");
 printf("A-&&\n");
 printf("B- ||\n");
 printf("C-%%\n");
@@ -232,7 +237,206 @@ system ("cls");
 }
  // jogo ainda em preparaçao
 void GousmasWar(){
-}
+	
+ int j1_g1 = 1, j1_g2 = 1;
+    int j2_g1 = 1, j2_g2 = 1;
+     char escolha2 ;
+    int j1_a1 = 1, j1_a2 = 1;
+    int j2_a1 = 1, j2_a2 = 1;
+
+    int turno = 1;
+    int opcao;
+    setlocale(LC_ALL, "Portuguese");
+    do{
+
+    while (1) {
+        printf("[número de gousmas(número de fúria)]");
+        printf("\nJ1: [%d(%d)] [%d(%d)]\n", j1_g1, j1_a1, j1_g2, j1_a2);
+        printf("J2: [%d(%d)] [%d(%d)]\n", j2_g1, j2_a1, j2_g2, j2_a2);
+
+        printf("\nTurno do Jogador %d\n", turno);
+
+        // escolha da ação
+        do {
+            printf("1 - Atacar\n2 - Dividir\nEscolha: ");
+            scanf("%d", &opcao);
+        } while (opcao != 1 && opcao != 2);
+
+        // ================= ATAQUE =================
+        if (opcao == 1) {
+            int atk, alvo;
+
+            // atacante
+            do {
+                printf("Atacante (1 ou 2): ");
+                scanf("%d", &atk);
+            } while (atk < 1 || atk > 2 ||
+                (turno == 1 && ((atk == 1 && j1_a1 == 0) || (atk == 2 && j1_a2 == 0))) ||
+                (turno == 2 && ((atk == 1 && j2_a1 == 0) || (atk == 2 && j2_a2 == 0)))
+            );
+
+            // alvo
+            do {
+                printf("Alvo (1 ou 2): ");
+                scanf("%d", &alvo);
+            } while (alvo < 1 || alvo > 2 ||
+                (turno == 1 && ((alvo == 1 && j2_a1 == 0) || (alvo == 2 && j2_a2 == 0))) ||
+                (turno == 2 && ((alvo == 1 && j1_a1 == 0) || (alvo == 2 && j1_a2 == 0)))
+            );
+
+            // efeito
+            if (turno == 1) {
+                int furia = (atk == 1) ? j1_g1 : j1_g2;
+
+                if (alvo == 1) {
+                    j2_g1 += furia;
+                    if (j2_g1 > 4) {
+                        j2_a1 = 0;
+                        printf("Gousma destruida!\n");
+                    }
+                } else {
+                    j2_g2 += furia;
+                    if (j2_g2 > 4) {
+                        j2_a2 = 0;
+                        printf("Gousma destruida!\n");
+                    }
+                }
+
+            } else {
+                int furia = (atk == 1) ? j2_g1 : j2_g2;
+
+                if (alvo == 1) {
+                    j1_g1 += furia;
+                    if (j1_g1 > 4) {
+                        j1_a1 = 0;
+                        printf("Gousma destruida!\n");
+                    }
+                } else {
+                    j1_g2 += furia;
+                    if (j1_g2 > 4) {
+                        j1_a2 = 0;
+                        printf("Gousma destruida!\n");
+                    }
+                }
+            }
+        }
+
+        // DIVIDIR 
+        if (opcao == 2) {
+            int origem, qtd;
+
+            // escolher origem
+            do {
+                printf("Origem (1 ou 2): ");
+                scanf("%d", &origem);
+            } while (origem < 1 || origem > 2 ||
+                (turno == 1 && ((origem == 1 && j1_a1 == 0) || (origem == 2 && j1_a2 == 0))) ||
+                (turno == 2 && ((origem == 1 && j2_a1 == 0) || (origem == 2 && j2_a2 == 0)))
+            );
+
+            if (turno == 1) {
+                int *fo = (origem == 1) ? &j1_g1 : &j1_g2;
+
+                do {
+                    printf("Qtd: ");
+                    scanf("%d", &qtd);
+                } while (qtd < 1 || (*fo - qtd) < 1);
+
+                if (origem == 1) {
+                    j1_g1 -= qtd;
+                    j1_g2 += qtd;
+
+                    if (j1_a2 == 0) {
+                        j1_a2 = 1;
+                        printf("Reviveu!\n");
+                    }
+
+                    if (j1_g2 > 4) {
+                        j1_a2 = 0;
+                        printf("Destruida!\n");
+                    }
+
+                } else {
+                    j1_g2 -= qtd;
+                    j1_g1 += qtd;
+
+                    if (j1_a1 == 0) {
+                        j1_a1 = 1;
+                        printf("Reviveu!\n");
+                    }
+
+                    if (j1_g1 > 4) {
+                        j1_a1 = 0;
+                        printf("Destruida!\n");
+                    }
+                }
+
+            } else {
+                int *fo = (origem == 1) ? &j2_g1 : &j2_g2;
+
+                do {
+                    printf("Qtd: ");
+                    scanf("%d", &qtd);
+                } while (qtd < 1 || (*fo - qtd) < 1);
+
+                if (origem == 1) {
+                    j2_g1 -= qtd;
+                    j2_g2 += qtd;
+
+                    if (j2_a2 == 0) {
+                        j2_a2 = 1;
+                        printf("Reviveu!\n");
+                    }
+
+                    if (j2_g2 > 4) {
+                        j2_a2 = 0;
+                        printf("Destruida!\n");
+                    }
+
+                } else {
+                    j2_g2 -= qtd;
+                    j2_g1 += qtd;
+
+                    if (j2_a1 == 0) {
+                        j2_a1 = 1;
+                        printf("Reviveu!\n");
+                    }
+
+                    if (j2_g1 > 4) {
+                        j2_a1 = 0;
+                        printf("Destruida!\n");
+                    }
+                }
+            }
+        }
+
+        // acabou o jogo 
+        if (j1_a1 == 0 && j1_a2 == 0) {
+            printf("\nJogador 2 venceu!\n");
+            break;
+        }
+
+        if (j2_a1 == 0 && j2_a2 == 0) {
+            printf("\nJogador 1 venceu!\n");
+            break;
+        }
+
+        // troca turno
+        turno = (turno == 1) ? 2 : 1;
+    }
+    
+     printf ("quer continuar ? ");
+printf("s - sim \t n - nao\n");
+printf("Escolha: ");
+scanf(" %c", &escolha2);
+system ("cls");
+
+
+}while(escolha2 =='s');
+
+    
+}	
+	
 
 // MENU DOS JOGOS 
 int main() {
@@ -252,15 +456,15 @@ int main() {
         scanf("%d", &opcao);
          system ("cls");
 
-        switch(opcao) {                       
-            case 1:                             
-                PerguntasErespostas();                    
-                break;                         
+        switch(opcao) {
+            case 1:
+                PerguntasErespostas();
+                break;
                  system ("cls");
-            case 2:                            
+            case 2:
                 cobraNaCaixa();
-                break;                               // CHAT GPT
-                 system ("cls");                    
+                break;
+                 system ("cls");
             case 3:
                 GousmasWar();
                 break;
@@ -276,6 +480,5 @@ int main() {
 
     return 0;
 }
-
 
 
