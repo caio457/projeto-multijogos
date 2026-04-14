@@ -252,15 +252,15 @@ int main() {
         scanf("%d", &opcao);
          system ("cls");
 
-        switch(opcao) {
-            case 1:
-                PerguntasErespostas();
-                break;
+        switch(opcao) {                       
+            case 1:                             
+                PerguntasErespostas();                    
+                break;                         
                  system ("cls");
-            case 2:
+            case 2:                            
                 cobraNaCaixa();
-                break;
-                 system ("cls");
+                break;                               // CHAT GPT
+                 system ("cls");                    
             case 3:
                 GousmasWar();
                 break;
