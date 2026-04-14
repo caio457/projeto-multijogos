@@ -147,7 +147,14 @@ void cobraNaCaixa() {
 	char escolha2 ;
 	
 do{	
-	
+printf ("jogador 1 :\n")	;
+printf ("jogador 2 :\n")	;
+printf ("jogador 3 :\n")	;
+printf ("jogador 4 :\n")	;
+printf ("jogador 5 :\n")	;	
+printf ("jogador 6 :\n")	;	
+printf ("jogador 7 :\n")	;
+printf (" \n")	;
 
 	
 	
