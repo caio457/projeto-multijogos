@@ -34,8 +34,5 @@ O projeto foi criado com foco em praticar lógica de programação, estrutura de
 ## 📂 Estrutura do projeto
 
 ```bash
-📁 sistema-de-jogos
- ┣ 📄 main.c
- ┣ 📄 jogos.c
- ┣ 📄 jogos.h
- ┗ 📄 README.md
+
+
